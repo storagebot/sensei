@@ -151,6 +151,10 @@ class WooThemes_Sensei {
 			$this->load_class( 'notices' );
 			$this->notices = new WooThemes_Sensei_Notices();
 
+            // Load notice Class
+            $this->load_class( 'rest-api' );
+            $this->api = new WooThemes_Sensei_Rest_API();
+
 			// Frontend Hooks
 			add_filter( 'template_include', array( $this, 'template_loader' ), 10, 1 );
 
