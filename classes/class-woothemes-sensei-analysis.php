@@ -566,6 +566,5 @@ class WooThemes_Sensei_Analysis {
 	    array_push( $search_columns, 'display_name' );
 	    return $search_columns;
 	}
-
 } // End Class
 ?>
