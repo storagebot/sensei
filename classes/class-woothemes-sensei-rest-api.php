@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * TODO: check for WP-API
  *
  */
-class WooThemes_Sensei_Rest_API  {
+class WooThemes_Sensei_Rest_API extends WP_JSON_CustomPostType {
 
     public function __construct () {
         //register the endpoints
@@ -27,7 +27,6 @@ class WooThemes_Sensei_Rest_API  {
     }// __construct
 
     public function register_routes( $routes ){
-        echo 'here'; die;
             $routes['/sensei/'] = array(
                 array( array( $this, 'send_plugin_data'), WP_JSON_Server::READABLE ),
                 //array( array( $this, 'new_post'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
@@ -46,7 +45,7 @@ class WooThemes_Sensei_Rest_API  {
             return $routes;
     }// end register_routes
 
-    public function send_plugin_data() {
+    public function send_plugin_data( ) {
         $test = array( 'plugin'=>'Sensei', 'version' => 'API Beta' , 'success' => true );
         wp_send_json_success( $test );
     }// end send plugin data
