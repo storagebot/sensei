@@ -162,7 +162,7 @@ class WooThemes_Sensei {
 		$this->emails->token = $this->token;
 
         // Load notice Class
-        $this->load_class( 'rest-api' );
+        $this->load_class( 'rest-api', 'api'  );
         $this->api = new WooThemes_Sensei_Rest_API();
 
         // Image Sizes
@@ -967,9 +967,14 @@ class WooThemes_Sensei {
 	 * @access  public
 	 * @return  void
 	 */
-	public function load_class ( $class_name = '' ) {
+	public function load_class ( $class_name = '', $directory = ''  ) {
+		// check the directory and add a forward slash to it
+		if( ! empty( $directory ) ){
+			$directory = trailingslashit( $directory );
+		}
+
 		if ( '' != $class_name && '' != $this->token ) {
-			require_once( 'class-' . esc_attr( $this->token ) . '-' . esc_attr( $class_name ) . '.php' );
+			require_once( $directory . 'class-' . esc_attr( $this->token ) . '-' . esc_attr( $class_name ) . '.php' );
 		} // End If Statement
 	} // End load_class()
 
