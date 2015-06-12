@@ -1,13 +1,13 @@
 <?php
 
-class Sensei_Class_Course_Test extends WP_UnitTestCase {
+class Sensei_Class_Course_Test extends  \Codeception\TestCase\Test {
 
+    protected $backupGlobalsBlacklist = array('app','wp_filter');
     /**
      * Constructor function
      */
     public function __construct(){
         parent::__construct();
-        include_once( 'factory/Sensei-Factory.php' );
     }
 
     /**
@@ -45,9 +45,10 @@ class Sensei_Class_Course_Test extends WP_UnitTestCase {
         $this->assertTrue( method_exists( 'WooThemes_Sensei_Course', 'get_all_courses' ) , 'The course class get_all_courses function does not exist.' );
 
         //setup the assertion
-        $retrieved_courses = get_posts( array('post_type' =>'course', 'posts_per_page'=>10000 ) );
+
 
         //make sure the same course were retrieved as what we just created
+        $retrieved_courses = get_posts( array('post_type' =>'course', 'posts_per_page'=>10000 ) );
         $this->assertEquals( count( $retrieved_courses) , count( WooThemes_Sensei_Course::get_all_courses() )
             , 'The number of course returned is not equal to what is actually available' );
 

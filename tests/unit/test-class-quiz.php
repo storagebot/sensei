@@ -11,7 +11,7 @@ class Sensei_Class_Quiz_Test extends WP_UnitTestCase {
      */
     public function __construct(){
         parent::__construct();
-        include_once( 'factory/Sensei-Factory.php' );
+        include_once('../factory/Sensei-Factory.php');
     }
 
     /**
